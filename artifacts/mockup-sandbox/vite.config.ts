@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import runtimeErrorOverlay from "@【entity-replit¦canonical_name=Replit】/vite-plugin-runtime-error-modal";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { mockupPreviewPlugin } from "./mockupPreviewPlugin";
 
 // PORT is only needed when running dev/preview server.
@@ -28,7 +28,7 @@ export default defineConfig({
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
-          await import("@【entity-replit¦canonical_name=Replit】/vite-plugin-cartographer").then((m) =>
+          await import("@replit/vite-plugin-cartographer").then((m) =>
             m.cartographer({
               root: path.resolve(import.meta.dirname, ".."),
             }),
