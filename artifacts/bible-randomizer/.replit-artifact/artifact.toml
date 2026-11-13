@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Bible Randomizer"
+description = "A Scripture companion that helps people discover Bible chapters and verses, reflect on themes, track reading, and save verses for later."
+version = "1.0.0"
+id = "artifacts/bible-randomizer"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23103
+
+[services.development]
+run = "pnpm --filter @workspace/bible-randomizer run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bible-randomizer", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/bible-randomizer/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23103"
+BASE_PATH = "/"
